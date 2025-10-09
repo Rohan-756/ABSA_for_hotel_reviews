@@ -12,7 +12,11 @@ This application uses a trained Support Vector Machine (SVM) model to classify h
 
 ## **Demo**
 
-*Replace this placeholder with a screenshot of your running Streamlit app (e.g., demo\_screenshot.png).*
+<img src="screenshots/ML-demo-1.jpg" alt="Hotel Review App (Positive)" width="700">
+<img src="screenshots/ML-demo-2.jpg" alt="Hotel Review App (Neutral)" width="700">
+<img src="screenshots/ML-demo-3.jpg" alt="Hotel Review App (Negative)" width="700">
+
+
 
 ## **Installation**
 
