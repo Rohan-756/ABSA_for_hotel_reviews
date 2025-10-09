@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 
 # Load model + vectorizer
-vectorizer, svm = joblib.load("./models/final_svm_model.joblib")
+vectorizer, svm = joblib.load("./models/final_svm_model_improved.joblib")
 
 def to_polarity(rating):
     if rating == 1:
