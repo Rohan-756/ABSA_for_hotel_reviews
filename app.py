@@ -1,15 +1,28 @@
-from datasets import load_dataset
-import pandas as pd
+import streamlit as st
+import joblib
 
-# Load TripAdvisor review-rating dataset
-dataset = load_dataset("jniimi/tripadvisor-review-rating")
+# Load model + vectorizer
+vectorizer, svm = joblib.load("./models/final_svm_model.joblib")
 
-# Convert to pandas DataFrame
-df = dataset["train"].to_pandas()
+def to_polarity(rating):
+    if rating == 1:
+        return "positive"
+    elif rating == 0:
+        return "neutral"
+    else:
+        return "negative"
 
-print(df.shape)
-print(df.columns)
-print(df.head())
+st.title("Hotel Review Sentiment Predictor 🏨")
 
+# User input
+review = st.text_area("Enter a hotel review:")
 
-df.to_csv("data/tripadvisor_aspect_reviews.csv", index=False)
+if st.button("Predict"):
+    if review.strip() == "":
+        st.warning("Please enter a review.")
+    else:
+        X = vectorizer.transform([review])
+        pred = svm.predict(X)[0]
+        sentiment = to_polarity(pred)
+        st.success(f"⭐ Predicted Rating: {int(pred)} ({sentiment})")
+
